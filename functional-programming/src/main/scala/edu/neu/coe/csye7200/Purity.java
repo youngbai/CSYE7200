@@ -19,14 +19,14 @@ public class Purity {
         }
     }
 
-    // is NOT pure, because it changed outside world, `MyInteger x`
+    // is NOT pure, because it changed outside world -`MyInteger x`
     public int getNext(MyInteger x) {
         int x1 = x.getInt() + 1;
         x.setInt(x1);
         return x1;
     }
 
-    // is not pure
+    // throw IllegalAccessException
     public int getNext(Integer x) throws Exception {
         int result = x.intValue() + 1;
         Field f = x.getClass().getDeclaredField("value");
@@ -55,9 +55,6 @@ public class Purity {
     }
 
     public static void testPurity(boolean b, String message) {
-
-        if (b) System.out.println(message+" is idempotent");
-        else System.out.println(message+" is not idempotent");
 
         if (b) System.out.println(message + " is pure");
         else System.out.println(message + " is not pure");

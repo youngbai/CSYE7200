@@ -63,6 +63,12 @@ class ListsSpec extends flatspec.AnyFlatSpec with should.Matchers {
     P04.length(fib5) shouldBe 6
   }
 
+  // if length() implemented without tail-recursion, it will cause stackoverflow
+  it should "work for very long list" in {
+    val list = LazyList.continually(1) take 100000 to (List)
+    P04.length(list) shouldBe 100000
+  }
+
   behavior of "P05.reverse"
 
   import edu.neu.coe.csye7200.lab99.scala99.P05._

@@ -119,8 +119,7 @@ object Movie extends App {
   def elements(list: Seq[String], indices: Int*): List[String] = {
     // Hint: form a new list which is consisted by the elements in list in position indices. Int* means array of Int.
     // 6 points
-    val result: Seq[String] = Seq[String]()  // TO BE IMPLEMENTED
-    for (i <- indices) result :+ list(i)
+    val result: Seq[String] = indices.map(list)  // TO BE IMPLEMENTED
     result.toList
   }
 

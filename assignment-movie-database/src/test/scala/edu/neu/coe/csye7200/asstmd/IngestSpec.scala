@@ -23,7 +23,7 @@ class IngestSpec extends AnyFlatSpec with Matchers {
     // check that xys has exactly one element, consisting of Success(42) -- 10 points
     // TO BE IMPLEMENTED
     xys should have size 1
-    xys shouldBe Seq(Success(42))
+    xys should contain (Success(42))
   }
 
   it should "work for movie database" in {

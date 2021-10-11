@@ -87,20 +87,24 @@ object P05 {
       case h :: t => inner(h +: r, t)
     }
     inner(Nil, xs)
-
-
-//    (r, _xs) match {
-//      case Nil => Nil
-//      case _ :: Nil => xs
-//      case h :: t => reverse(t) :+ h
-//    }
   }
 }
 
 object P06 {
 
   // inefficient solution
-  def isPalindrome[X](xs: List[X]): Boolean = ??? // TO BE IMPLEMENTED
+  @tailrec
+  def isPalindrome[X](xs: List[X]): Boolean = xs match {
+    case Nil => true
+    case _ :: Nil => true
+    case h :: t if h == t.last => isPalindrome(t.init)  // add an if guard to case statement
+    case _ => false
+
+    // solution 1
+    //case h :: t => if (h == t.last) isPalindrome(t.init) else false // tail-recursive
+    // solution 2
+    //case h :: t => h == t.last && isPalindrome(t.init)  // tail-recursive
+  } // TO BE IMPLEMENTED
 }
 
 object P07 {

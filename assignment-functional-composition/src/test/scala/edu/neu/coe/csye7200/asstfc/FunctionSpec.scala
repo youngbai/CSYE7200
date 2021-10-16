@@ -79,6 +79,10 @@ class FunctionSpec extends AnyFlatSpec with Matchers {
     Try(aux(0)(2)) should matchPattern {
       case Failure(_) =>
     }
+
+    Try(aux(2)(0)) should matchPattern {  // add by myself
+      case Success("ab") =>
+    }
   }
 
   behavior of "invert3"

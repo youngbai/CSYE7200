@@ -1,6 +1,6 @@
 package edu.neu.coe.csye7200
 
-import scala.util.Try
+import scala.util.{Success, Try}
 
 /**
   * Created by scalaprof on 10/7/16.
@@ -20,5 +20,7 @@ object Parseable {
 }
 
 object TestParseable {
+  // desugar it as:
+  // def parse[T](s: String)(implicit ev: Parseable[T]): Try[T] = ev.parse(s)
   def parse[T: Parseable](s: String): Try[T] = implicitly[Parseable[T]].parse(s)
 }
